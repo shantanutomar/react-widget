@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LatestChanges from "./components/LatestChanges";
+import UserForm from "./components/UserForm";
+import { latestChangesData } from "./staticData";
 
-function App() {
+const useStyles = makeStyles((theme) => ({
+  loaderRoot: {
+    display: 'flex',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
+  },
+  // app: {
+  //   textAlign: 'center',
+  // },
+  userFormLatestChngCont: {
+    display: 'flex',
+    padding: '10px',
+    justifyContent: 'center',
+  }
+}));
+
+const App = () => {
+
+  const classes = useStyles();
+  const [latestChanges, setLatestChanges] = useState([]);
+
+  useEffect(() => {
+    setLatestChanges(latestChangesData);
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    latestChanges.length > 0 ? 
+      <section className={classes.userFormLatestChngCont}>
+        <UserForm latestChanges={latestChanges} />
+        <LatestChanges latestChanges={latestChanges} />
+      </section> : <CircularProgress />
   );
 }
 

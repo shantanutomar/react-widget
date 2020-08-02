@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/index.css">
+
+    <title>React Widget</title>
+</head>
+<body>
+    <section class="page-root">
+      <div class="connect-root">
+          <img src="./assets/connect-logo.png" alt="image"/>
+          <div class="connect-intercom-text">Connect with Intercom</div>
+          <div class="connect-intercom-sub-text">Choose the account you want to connect with</div>
+          <div class="headway-block">
+            <span class="headway-text">Headway</span>
+            <img src="./assets/headway-small-symbol.png" alt="small-symbol"/>
+          </div>
+          <button class="connect-button">Connect</button>
+      </div>
+      <div class="widget-root">
+          <button class="collapsible">+ Expand Widget</button>
+          <div id="react-widget-root" class="content"></div>
+      </div>
+    </section>
+
+    <script src="./js/runtime-main.afd36109.js"></script>
+    <script src="./js/2.2265b9b5.chunk.js"></script>
+    <script src="./js/main.7b89d3c6.chunk.js"></script>
+    <script>
+        const coll = document.getElementsByClassName("collapsible");
+        for (let i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+            } else {
+              content.style.maxHeight = content.scrollHeight + "px";
+            } 
+          });
+        }
+    </script>
+</body>
+</html>
